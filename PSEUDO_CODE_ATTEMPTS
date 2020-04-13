@@ -1,0 +1,39 @@
+PSEUDO_CODE_ATTEMPTS
+
+//
+
+- a function that returns the sum of two numbers
+
+START
+
+Given two integer variables.
+	- Return the sum of the two variables.
+	- Save the value in a new variable named sum2.
+
+Print sum2.
+
+
+//
+
+- A function that takes an array of strings, and returns a string that is all those strings concatenated together
+
+START
+
+Given an array of strings.
+Join (concatenate) the individual strings to form one string.
+Make sure there are spaces in between the old string bits.
+Print the newly concatenated string.
+
+
+//
+- A function that takes an array of integers, and returns a new array with every other element.
+
+START
+
+Given an array with integers (myArray).
+Create an indexing variable.
+Create a new array (mySecondArray).
+Iterate over the array beginning with an index of 0, while the index is less than the length of the string, and increasing the index by two.
+Return each of the indexed integers in the array to mySecondArray.
+Print mySecondArray.
+

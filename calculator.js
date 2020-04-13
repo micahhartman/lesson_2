@@ -6,33 +6,70 @@
 
 const readline = require('readline-sync');
 
-console.log('Welcome to Calculator!');
+function prompt(message) {
+	console.log(`=> ${message}`);
+}
 
-console.log("What's the first number?");
-let number1 = readline.question();
+prompt('Welcome to Calculator!');
 
-console.log("what's the second number?");
-let number2 = readline.question();
+while (true) {
+	prompt("What's the first number?");
+	let number1 = readline.question();
 
-console.log(`You selected ${number1} as your first number, and ${number2} as your second number.`);
+	function invalidNumber(number) {
+		return number.trimStart() === '' || Number.isNaN(Number(number));
+	}
 
-console.log('What operation would you like to perform? \n1) Add 2) Subtract 3) Multiply 4) Divide');
-let operation = readline.question();
+	while (invalidNumber(number1)) {
+		prompt("Hmm.. that doesn't look like a valid number.");
+		number1 = readline.question();
+	}
 
+	prompt("what's the second number?");
+	let number2 = readline.question();
 
-let output;
+	while (invalidNumber(number2)) {
+		prompt("Hmm... your second number doesn't seem to be valid.");
+		number2 = readline.question();
+	}
 
-if (operation.toLowerCase() === 'add' || operation === '1') {
-	output = Number(number1) + Number(number2);
+	prompt(`You selected ${number1} as your first number, and ${number2} as your second number.`);
 
-} else if (operation.toLowerCase() === 'subtract' || operation === '2') {
-	output = Number(number1) - Number(number2);
+	prompt('What operation would you like to perform? \n1) Add 2) Subtract 3) Multiply 4) Divide');
+	let operation = readline.question().toLowerCase();
 
-} else if (operation.toLowerCase() === 'multiply' || operation === '3') {
-	output = Number(number2) * Number(number1);
+	while (!['1', 'add', '2', 'subtract', '3', 'multiply', '4', 'divide'].includes(operation)) {
+		prompt('You must select one of the operations listed.');
+		operation = readline.question().toLowerCase();
+	}
 
-} else if (operation.toLowerCase() === 'divide' || operation === '4') {
-	output = Number(number1) / Number(number2);
-};
+	let output;
+	switch(operation) {
+		case '1':
+		case 'add':
+			output = Number(number1) + Number(number2);
+			break;
+		case '2':
+		case 'subtract':
+			output = Number(number1) - Number(number2);
+			break;
+		case 'multiply':
+		case '3': 
+			output = Number(number2) * Number(number1);
+			break;
+		case 'divide':
+		case '4':
+			output = Number(number1) / Number(number2);
+			break;
+	};
 
-console.log(`The result is: ${output}.` );
+	prompt(`The result is: ${output}.` );
+
+	prompt(`Would you like to do another calculation? \n 1) Yes 2) No`);
+	let calculateAgain = readline.question().toLowerCase();
+
+	if (calculateAgain == 'no') break;
+	if (calculateAgain == '2') break;
+	if (calculateAgain == 'n') break;
+	}
+
